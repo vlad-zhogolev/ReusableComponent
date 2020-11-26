@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using LabyrinthGame.Labyrinth;
 
 namespace Playground
 {
-    public class QuikGraphPlayground : MonoBehaviour
+    public class Example : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
@@ -24,8 +24,12 @@ namespace Playground
             Tile freeTile = new Tile(Tile.Type.Junction);
 
             Labyrinth labyrinth = new Labyrinth(tiles, freeTile);
+            Debug.Log("Labyrinth created");
 
-            var result = labyrinth.IsReachable(new Vector2Int(0, 0), new Vector2Int(1, 0));
+            var source = new Vector2Int(0, 0);
+            var target = new Vector2Int(1, 0);
+            var isReachable = labyrinth.IsReachable(source, target);
+            Debug.LogFormat("Tile ({0}, {1}) is {2}reachable from tile ({3}, {4})", target.x, target.y, isReachable ? "" : "not ", source.x, source.y);
         }
     }
 }
